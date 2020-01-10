@@ -24,14 +24,12 @@ echo "your_password_for_protecting_the_ansible_vault" > password.txt
 
 In the vars folder.
 
-```
-echo "your_system_sudo_password" > password.vault
-```
+Edit password.vault file with your system sudo password.
 
 In the vars folder.
 
 ```
-ansible-vault encrypt password.vault --vault-password-file password.txt
+ansible-vault encrypt password.vault --vault-password-file ../password.txt
 ```
 
 In the vars folder.
