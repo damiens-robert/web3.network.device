@@ -10,7 +10,7 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: cloudos.local.hosts
+  - name: web3.network.device 
     groups:
       - local
 provisioner:
