@@ -1,0 +1,5 @@
+#password file
+
+password.txt
+vars/password.vault
+vars/hosts.yml

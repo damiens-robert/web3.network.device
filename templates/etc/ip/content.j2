@@ -1,0 +1,19 @@
+{% extends 'ip/template.j2' %}
+{% block content %}
+{% if hosts_localhost %}
+{% block localhost %}
+
+############################ localhost addresses ###############################
+{% endblock %}
+{% endif %}
+{% block localip %}
+
+############################ local ips addresses ###############################
+{% endblock %}
+{% if hosts_user_defined and hosts is defined %}
+{% block userdefined %}
+
+########################## user defined addresses ##############################
+{% endblock %}
+{% endif %}
+{% endblock %}

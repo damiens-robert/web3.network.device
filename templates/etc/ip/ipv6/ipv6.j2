@@ -1,0 +1,50 @@
+{% extends 'ip/content.j2' %}
+
+{% block header %}
+################################ IPV6 ADRESSES #################################
+{% endblock %}
+
+{% block localhost%}
+{{ super() }}
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+{% if local_hostname is defined %}
+::1 {{ local_hostname }}
+{% endif %}
+{% endblock %}
+
+{% block localip %}
+{{ super() }}
+{% if hostvars[inventory_hostname]['ansible_default_ipv6']['address'] is defined %}
+{% if local_hostname is defined %}
+{{ hostvars[inventory_hostname]['ansible_default_ipv6']['address'] }} {{ local_hostname }}
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block userdefined %}
+{{ super() }}
+{% for host, config in hosts.items() %}
+{% if config.ipv6 is defined %}
+{% if config.comment is defined %}
+{{ config.comment }}
+{% endif %}
+
+{% if config.ipv6.localhost %}
+::1 {{ host }}
+{% endif %}
+{% if config.ipv6.localip and hostvars[inventory_hostname]['ansible_default_ipv6']['address'] is defined %}
+{{ hostvars[inventory_hostname]['ansible_default_ipv6']['address'] }} {{ host }}
+{% endif %}
+{% if config.ipv6.ips is defined %}
+{% for ip in config.ipv6.ips %}
+{{ ip }} {{ host }}
+{% endfor %}
+{% endif %}
+{% endif %}
+
+{% endfor %}
+{% endblock %}

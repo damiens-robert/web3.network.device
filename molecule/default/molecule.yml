@@ -1,0 +1,31 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: delegated
+  options:
+    managed: false
+    ansible_connection_options:
+      ansible_connection: local
+lint:
+  name: yamllint
+platforms:
+  - name: cloudos.local.hosts
+    groups:
+      - local
+provisioner:
+  name: ansible
+  env:
+    HOSTNAME: ${HOSTNAME}
+  lint:
+    name: ansible-lint
+  options:
+    vault-password-file: ../../password.txt
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-playbook.yml}
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

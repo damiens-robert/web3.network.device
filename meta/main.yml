@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Damiens ROBERT <damiens.robert@gmail.com>
+  description: Ansible role fork from arillso.hosts that creates /etc/hosts.
+  license: MIT
+  min_ansible_version: 2.8
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+
+  galaxy_tags:
+    - hosts
+    - system
+
+dependencies: []

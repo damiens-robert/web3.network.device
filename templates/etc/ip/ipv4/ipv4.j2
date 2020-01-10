@@ -1,0 +1,47 @@
+{% extends 'ip/content.j2' %}
+
+{% block header %}
+################################ IPV4 ADRESSES #################################
+{% endblock %}
+
+{% block localhost%}
+{{ super() }}
+127.0.0.1 localhost.localdomain localhost
+127.0.0.1 localhost4.localdomain4 localhost4
+{% if local_hostname is defined %}
+127.0.0.1 {{ local_hostname }}
+{% endif %}
+{% endblock %}
+
+{% block localip %}
+{{ super() }}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] is defined %}
+{% if local_hostname is defined %}
+{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }} {{ local_hostname }}
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block userdefined %}
+{{ super() }}
+{% for host, config in hosts.items() %}
+{% if config.ipv4 is defined %}
+{% if config.comment is defined %}
+{{ config.comment }}
+{% endif %}
+
+{% if config.ipv4.localhost %}
+127.0.0.1 {{ host }}
+{% endif %}
+{% if config.ipv4.localip and hostvars[inventory_hostname]['ansible_default_ipv4']['address'] is defined %}
+{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }} {{ host }}
+{% endif %}
+{% if config.ipv4.ips is defined %}
+{% for ip in config.ipv4.ips %}
+{{ ip }} {{ host }}
+{% endfor %}
+{% endif %}
+{% endif %}
+
+{% endfor %}
+{% endblock %}

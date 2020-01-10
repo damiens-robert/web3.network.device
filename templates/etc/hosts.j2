@@ -1,0 +1,6 @@
+{% if hosts_ipv4 %}
+{% include 'ip/ipv4/ipv4.j2' %}
+{% endif %}
+{% if hosts_ipv6 %}
+{% include 'ip/ipv6/ipv6.j2' %}
+{% endif %}

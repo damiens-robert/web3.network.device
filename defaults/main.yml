@@ -1,0 +1,50 @@
+---
+################################################################################
+########################## Setup Environment Variables #########################
+################################################################################
+
+# Take the hostname from the HOSTNAME
+local_hostname: "{{ lookup('env','HOSTNAME') }}"
+
+################################################################################
+############################# Setup Defaults Values ############################
+################################################################################
+
+# hosts file location
+hosts_file: '/etc/hosts'
+
+# Backup the hosts file before changing it.
+hosts_backup: true
+
+# Group owner of hosts file.
+hosts_group: root
+
+# Owner of hosts file.
+hosts_owner: root
+
+# Settings for SElinux.
+hosts_serole: object_r
+hosts_setype: net_conf_t
+hosts_seuser: system_u
+hosts_selevel: s0
+
+# Access permission hosts file.
+hosts_mode: 0644
+
+# Ipv4 localhost entries are set automatically.
+# Setting false it can be prevented.
+hosts_ipv4: true
+
+# Ipv6 localhost entries are set automatically.
+# Setting false it can be prevented.
+hosts_ipv6: true
+
+# Creates a 172.0.0.1 entry for the server name.
+hosts_localhost: true
+
+# Creates a ::1 entry for the server name.
+hosts_localhost6: true
+
+# Inserts all hosts in the Ansible Inventory
+# file into the Hosts file
+hosts_user_defined: true

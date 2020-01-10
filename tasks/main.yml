@@ -1,0 +1,25 @@
+---
+# tasks file for arillso.hosts
+- name: Include custom variables
+  include_vars:
+    file: vars/custom.yml
+
+- name: Include vaulted sudo  password variables
+  include_vars:
+    file: vars/password.vault
+
+- name: Include hosts variables
+  include_vars:
+    file: vars/hosts.yml
+
+- name: Create hosts
+  become: true
+  vars:
+    ansible_become_pass: "{{ local_become_pass }}"
+  template:
+    src: 'templates/etc/hosts.j2'
+    dest: "{{ hosts_file }}"
+    backup: "{{ hosts_backup }}"
+    group: "{{ hosts_group }}"
+    owner: "{{ hosts_owner }}"
+    mode: "{{ hosts_mode }}"

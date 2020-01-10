@@ -1,0 +1,23 @@
+---
+hosts:
+  pod.inrupt-local.com:
+    comment: "### inrupt pod ###"
+    ipv4:
+      localhost: true
+      localip: false
+      ips:
+        - 172.16.36.10
+        - 192.168.1.1
+    ipv6:
+      localhost: false
+      localip: true
+      ips:
+        - ::2
+        - ::3
+  www.lowifi.io:
+    comment: "### lowifi website ###"
+    ipv4:
+      localhost: false
+      localip: false
+      ips:
+        - 172.16.37.10
