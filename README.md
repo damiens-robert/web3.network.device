@@ -132,14 +132,6 @@ hosts_ipv6: true
 
 None
 
-## Example Playbook
-
-```yml
-- hosts: localhost
-  roles:
-    - cloudos.local.hosts
-```
-
 ## Author
 
 - [Damiens ROBERT](https://www.linkedin.com/in/damiens-robert-72b3a417/)
