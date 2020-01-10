@@ -33,11 +33,15 @@ ff02::2 ip6-allrouters
 {{ config.comment }}
 {% endif %}
 
+{% if config.ipv6.localhost is defined%}
 {% if config.ipv6.localhost %}
 ::1 {{ host }}
 {% endif %}
+{% endif %}
+{% if config.ipv6.localip is defined%}
 {% if config.ipv6.localip and hostvars[inventory_hostname]['ansible_default_ipv6']['address'] is defined %}
 {{ hostvars[inventory_hostname]['ansible_default_ipv6']['address'] }} {{ host }}
+{% endif %}
 {% endif %}
 {% if config.ipv6.ips is defined %}
 {% for ip in config.ipv6.ips %}

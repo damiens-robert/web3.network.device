@@ -30,11 +30,15 @@
 {{ config.comment }}
 {% endif %}
 
+{% if config.ipv4.localhost is defined%}
 {% if config.ipv4.localhost %}
 127.0.0.1 {{ host }}
 {% endif %}
+{% endif %}
+{% if config.ipv4.localip is defined %}
 {% if config.ipv4.localip and hostvars[inventory_hostname]['ansible_default_ipv4']['address'] is defined %}
 {{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }} {{ host }}
+{% endif %}
 {% endif %}
 {% if config.ipv4.ips is defined %}
 {% for ip in config.ipv4.ips %}
