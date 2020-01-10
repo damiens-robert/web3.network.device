@@ -45,7 +45,7 @@ Edit hosts.yml file.
 In the project folder.
 
 ```
-molecule converge
+HOSTNAME=$(hostname) molecule converge
 ```
 
 ## Role Variables
